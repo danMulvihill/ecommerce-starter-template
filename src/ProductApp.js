@@ -132,7 +132,7 @@ class Product extends React.Component{
       <div className="card" style={{marginBottom:"15px"}}>
       <h4>{this.props.name} - ${this.props.price}</h4>
       <h5>Quantity: {this.state.qty} item(s)</h5>
-      <br /><br />
+      
       <button onClick={()=>(this.buy() )}>Buy</button>
       </div>
     )
