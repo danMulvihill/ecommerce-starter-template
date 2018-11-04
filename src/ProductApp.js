@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import './ProductApp.css';
 
 
 class ProductApp extends Component {
@@ -38,14 +38,16 @@ class ProductForm extends Component{
   
   handleSubmit = (e) =>{
     e.preventDefault();
-    alert(this.refs.name.value + ' $'+this.refs.price.value)
+    //alert(this.refs.name.value + ' $'+this.refs.price.value)
     const product = {
       name: this.refs.name.value,
-      price: this.refs.name.value
+      price: parseFloat(this.refs.price.value)
     }
 
     this.props.createProduct(product)
   
+    this.refs.name.value = "";
+    this.refs.price.value = "";
   }
 
   render(){
@@ -53,11 +55,11 @@ class ProductForm extends Component{
       <form onSubmit={this.handleSubmit}>
         <legend>Add another product</legend>
         <div className="form-group">
-          <label htmlfor="product">Product</label>
+          <label htmlFor="product">Product</label>
           <input name="product" className="form-control" ref="name" />
         </div>
         <div className="form-group">
-        <label htmlfor="price">Price</label>
+        <label htmlFor="price">Price</label>
         <input name="price" className="form-control" ref="price" />
       </div>
         <button type="submit" className="btn btn-primary">Create Product</button>
@@ -128,7 +130,7 @@ class Product extends React.Component{
   render(){
     return(
       <div className="card" style={{marginBottom:"15px"}}>
-      <p>{this.props.name} - ${this.props.price}</p>
+      <h4>{this.props.name} - ${this.props.price}</h4>
       <h5>Quantity: {this.state.qty} item(s)</h5>
       <br /><br />
       <button onClick={()=>(this.buy() )}>Buy</button>
@@ -142,7 +144,7 @@ class Product extends React.Component{
 class Total extends Component{
   render(){
     return(
-      <div classNane="card">
+      <div className="card">
         <h3>Total: ${Math.round(this.props.total*100)/100}</h3>
       </div>
     )
